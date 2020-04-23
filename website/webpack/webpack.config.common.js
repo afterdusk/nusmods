@@ -24,7 +24,8 @@ const commonConfig = merge([
         __mocks__: parts.PATHS.fixtures,
       },
       // Importing modules from these files will not require the extension.
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      // .mjs needed for graphQL (https://github.com/graphql/graphql-js/issues/1272)
+      extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
       // We don't use symlinks, so disable for performance
       symlinks: false,
     },

@@ -18,7 +18,9 @@
     "test:watch": "jest --watch",
     "e2e": "nightwatch -e default,safariMobile,safariDesktop,edge",
     "cors": "node scripts/cors-crawler",
-    "ci": "cross-env NODE_ENV=production yarn lint && yarn typecheck && yarn test && yarn test:integration && npm rebuild node-sass && yarn build"
+    "ci": "cross-env NODE_ENV=production yarn lint && yarn typecheck && yarn test && yarn test:integration && npm rebuild node-sass && yarn build",
+    "cleargenerated": "rm -rf __generated__ && find . -regex './src/.*__generated__.*' -type d -prune -exec rm -rf \"{}\" \\;",
+    "apollo:codegen": "yarn cleargenerated && apollo client:codegen --target typescript --useReadOnlyTypes"
   },
   "author": "NUSModifications",
   "license": "MIT",
@@ -130,9 +132,12 @@
     "url-loader": "3.0.0",
     "webpack": "4.42.1",
     "webpack-dev-server": "3.10.3",
-    "webpack-merge": "4.2.2"
+    "webpack-merge": "4.2.2",
+    "apollo": "^2.25.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.0.0-beta.41",
+    "@apollo/link-context": "^2.0.0-beta.3",
     "@material/fab": "0.40.1",
     "@material/snackbar": "0.40.1",
     "@sentry/browser": "5.15.0",
@@ -145,6 +150,8 @@
     "core-js": "3.6.4",
     "date-fns": "2.11.1",
     "downshift": "4.1.0",
+    "graphiql": "^0.17.5",
+    "graphql": "^14.6.0",
     "ical-generator": "https://github.com/ZhangYiJiang/ical-generator.git#ed6928fe",
     "immer": "3.3.0",
     "json2mq": "0.2.0",
